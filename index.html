@@ -24,6 +24,9 @@ body {margin:0px;}
 #configuration {left:50px;position:absolute;top:150px;right:50px;background-color:rgb(30,30,30);border-bottom-left-radius:30px;border-bottom-right-radius:30px;}
 #configurationContent {width:100%;height:100%;position:absolute;}
 #configurationContent2 {display:none;}
+#entertainment {left:50px;position:absolute;top:150px;right:50px;background-color:rgb(30,30,30);border-bottom-left-radius:30px;border-bottom-right-radius:30px;}
+#entertainmentContent {width:100%;height:100%;position:absolute;}
+#entertainmentContent2 {display:none;}
 .app {background-color:rgb(50,50,50);color:rgb(180,0,0);width:150px;height:50px;font-family:arial;font-size:1vw;border:none;border-radius:30px;font-weight:bold;position:relative;margin-top:25px;margin-left:25px;}
 #window {width:100%;height:100%;position:absolute;border:none;}
 </style>
@@ -39,7 +42,7 @@ body {margin:0px;}
 <button id="appsButton" onclick="apps()">Apps</button>
 <button id="assistantButton" onclick="assistant()">Assistant</button>
 <button id="configurationButton" onclick="configuration()">Configuration</button>
-<button id="entertainmentButton">Entertainment</button>
+<button id="entertainmentButton" onclick="entertainment()">Entertainment</button>
 </div>
 <div id="apps" style="display:none;height:100px;">
 <div id="appsContent">
@@ -113,6 +116,13 @@ app3 app3.html;
 </div>
 </div>
 
+<div id="entertainment" style="display:none;height:100px;">
+<div id="entertainmentContent">
+</div>
+<div id="entertainmentContent2">
+</div>
+</div>
+
 
 
 <img src="CyberSystemLogo.png" id="menu" onclick="menu1()" onmouseover="showMenu()" onmousemove="closeMenuTimeout = 200">
@@ -124,7 +134,12 @@ app3 app3.html;
 <img src="CyberSystemLogo.png" id="loadingLogo">
 </div>
 <script>
-alert("Warning! Under development! (CyberSystem Version Alpha 3)")
+
+
+alert("Under Development | CyberSystem Alpha 3") 
+
+
+
 var mainClockFunction = "nothing";
 var closeMenuTimeout = 0
 var menuOpen1 = "none"
@@ -248,6 +263,23 @@ menuOpen1 = "none"
 }
 
 
+function entertainment() {
+if(document.getElementById("entertainment").style.display == "none") {
+document.getElementById("entertainment").style.display = "block";
+document.getElementById("menu1").style.borderBottomLeftRadius = "0px";
+document.getElementById("menu1").style.borderBottomRightRadius = "0px";
+mainClockFunction = "expandEntertainment"
+document.getElementById("entertainmentButton").style.backgroundColor = "rgb(30,30,30)"
+closeOpenMenu1()
+menuOpen1 = "entertainment"
+}
+else {
+mainClockFunction = "closeEntertainment"
+document.getElementById("entertainmentButton").style.backgroundColor = "rgb(130,0,0)"
+menuOpen1 = "none"
+}
+}
+
 
 
 function mainClock() {
@@ -357,6 +389,34 @@ document.getElementById("configurationContent").innerHTML = ""
 
 
 
+
+
+
+else if(mainClockFunction == "expandEntertainment") {
+document.getElementById("entertainment").style.height = (Number(document.getElementById("entertainment").style.height.split("px")[0]) + 50).toString() + "px"
+if(Number(document.getElementById("entertainment").style.height.split("px")[0]) >= document.getElementById("desktop").offsetHeight-300) {
+mainClockFunction = "nothing"
+generateConfiguration()
+}
+}
+
+
+else if(mainClockFunction == "closeEntertainment") {
+
+document.getElementById("entertainment").style.height = (Number(document.getElementById("entertainment").style.height.split("px")[0]) - 50).toString() + "px"
+if(Number(document.getElementById("entertainment").style.height.split("px")[0]) <= 100) {
+document.getElementById("entertainment").style.display = "none";
+document.getElementById("entertainment").style.height = "100px";
+mainClockFunction = "nothing"
+document.getElementById("menu1").style.borderBottomLeftRadius = "30px";
+document.getElementById("menu1").style.borderBottomRightRadius = "30px";
+document.getElementById("entertainmentContent").innerHTML = ""
+}
+
+}
+
+
+
 else if(mainClockFunction == "showMenu") {
 document.getElementById("menu").style.left = (Number(document.getElementById("menu").style.left.split("px")[0]) + 10).toString() + "px"
 if(Number(document.getElementById("menu").style.left.split("px")[0]) >= 50) {
@@ -441,7 +501,38 @@ i += 1
 
 
 
-function configurationAssistant() {
+function generateConfiguration() {
+// TO BE COMPLETED
+var apps = document.getElementById("appsContent2").innerHTML + ""
+
+while(apps.indexOf("\n") != -1) {
+apps = apps.replace("\n","")
+
+}
+apps = apps.split(";")
+var apps2 = []
+var i = 0
+
+while(i < apps.length-1) {
+apps2.push(apps[i].split(" "))
+i += 1
+}
+i = 0
+
+document.getElementById("appsContent").innerHTML = ""
+
+while(i < apps2.length) {
+document.getElementById("appsContent").innerHTML += "<button class='app' onclick='document.getElementById(\"window\").src=\""+apps2[i][1]+"\"'>"+apps2[i][0]+"</button>";
+i += 1
+}
+
+
+}
+
+
+
+
+function generateEntertainment() {
 // TO BE COMPLETED
 var apps = document.getElementById("appsContent2").innerHTML + ""
 
@@ -477,6 +568,9 @@ setTimeout(endLoading,3000)
 //Use a full black theme
 //Expand objects for futuristic theme in final CyberSystem
 //Fix apps when closing app menu
+
+//cybersystema3.github.io
+//cybersystema3@outlook.com
 </script>
 </body>
 </html>
