@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {margin:0px;}
+* {outline:none;box-sizing:border-box;}
+#notepad {right:0px;left:200px;height:100%;background-color:#000000;color:rgb(150,0,0);position:absolute;font-family:arial;font-size:20px;border:none;}
+#notepad::placeholder {color:rgb(150,0,0);}
+#menu {left:0px;width:200px;background-color:rgb(30,30,30);position:absolute;top:0px;height:100%;}
+#alert {left:50%;top:50%;margin-top:-200px;margin-left:-300px;height:400px;width:600px;background-color:rgb(100,0,0);position:fixed;font-family:arial;text-align:center;border-radius:30px;color:rgb(200,200,200);}
+#alertInput {width:100%;position:absolute;bottom:50px;border-top-left-radius:30px;border-top-right-radius:30px;left:0px;height:100px;border:none;background-color:rgb(30,30,30);color:rgb(200,200,200);text-align:center;font-size:20px;}
+#alertSubmit {width:100%;position:absolute;bottom:0px;border-bottom-left-radius:30px;border-bottom-right-radius:30px;left:0px;height:50px;border:none;background-color:rgb(50,50,50);color:rgb(200,200,200);text-align:center;font-size:20px;}
+</style>
+</head>
+<body>
+<div id="menu">
+<button onclick="save()" id="save">Save</button>
+</div>
+<textarea id="notepad" placeholder="..."></textarea>
+
+<script>
+var mainClockFunction = "nothing"
+function alertInput(header,text) {
+document.body.innerHTML += '<div id="alert"><h1>'+header+'</h1><h3>'+text+'</h3><input id="alertInput"><button id="alertSubmit" onclick="sessionStorage.alertInput = document.getElementById(\'alertInput\').value;document.getElementById(\'alert\').remove()">Submit</button></div>'
+}
+
+function save() {
+alertInput("Saving","What would you like to name your file?")
+mainClockFunction = "saving"
+}
+
+function clock1() {
+
+
+if(mainClockFunction == "nothing") {
+mainClockFunction = "nothing"
+}
+else if(mainClockFunction == "saving" && sessionStorage.alertInput != "") {
+localStorage.notepadFileNames += "," + sessionStorage.alertInput
+sessionStorage.alertInput = ""
+mainClockFunction = "nothing"
+}
+
+
+
+}
+
+setInterval(clock1,10)
+</script>
+
+</body>
+</html>

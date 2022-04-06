@@ -3,14 +3,16 @@
 <head>
 <style>
 * {outline:none;box-sizing:border-box;}
-body {margin:0px;}
+body {margin:0px;background-color:rgb(0,0,0);}
 #loading {width:100%;height:100%;position:fixed;background-color:rgb(0,0,0);}
 #loadingTitle {text-align:center;color:rgb(150,0,0);font-family:arial;top:20%;position:absolute;width:100%;font-size:50px;}
 #loadingWelcome {text-align:center;color:rgb(200,200,200);font-family:arial;top:40%;position:absolute;width:100%;font-size:40px;}
 #loadingLogo {position:absolute;top:60%;left:50%;width:200px;height:200px;margin-left:-100px;}
 #desktop {width:100%;height:100%;position:fixed;background-color:rgb(0,0,0);}
 #menu {width:100px;height:100px;position:absolute;top:50px;left:50px;background-color:rgb(150,0,0);border-radius:30px;}
+#menu2 {width:100px;height:100px;position:absolute;top:100px;left:50px;background-color:rgb(100,0,0);border-radius:30px;font-size:90px;text-align:center;padding-top:0px;font-weight:bold;font-family:arial;color:rgb(200,200,200);}
 #menu1 {left:50px;height:100px;position:absolute;top:50px;background-color:rgb(150,0,0);border-radius:30px;}
+#menu3 {left:50px;height:100px;position:absolute;top:100px;background-color:rgb(100,0,0);border-radius:30px;}
 #appsButton {display:none;width:15%;height:100%;border:none;left:15%;position:absolute;background-color:rgb(130,0,0);color:rgb(200,200,200);font-family:arial;font-size:2vw;font-weight:bold;text-align:center;}
 #assistantButton {display:none;width:15%;height:100%;border:none;left:35%;position:absolute;background-color:rgb(130,0,0);color:rgb(200,200,200);font-family:arial;font-size:2vw;font-weight:bold;text-align:center;}
 #configurationButton {display:none;width:15%;height:100%;border:none;left:55%;position:absolute;background-color:rgb(130,0,0);color:rgb(200,200,200);font-family:arial;font-size:2vw;font-weight:bold;text-align:center;}
@@ -29,6 +31,12 @@ body {margin:0px;}
 #entertainmentContent2 {display:none;}
 .app {background-color:rgb(50,50,50);color:rgb(180,0,0);width:150px;height:50px;font-family:arial;font-size:1vw;border:none;border-radius:30px;font-weight:bold;position:relative;margin-top:25px;margin-left:25px;}
 #window {width:100%;height:100%;position:absolute;border:none;}
+#console {left:100px;right:0px;position:absolute;height:100%;border-radius:30px;font-size:30px;font-family:Arial;background-color:rgb(130,0,0);border:none;}
+#restart {position:absolute;width:50px;height:50px;right:0px;top:0px;border-top-right-radius:30px;}
+#shutdown {position:absolute;width:50px;height:50px;right:0px;bottom:0px;border-bottom-right-radius:30px;}
+#alert {left:50%;top:50%;margin-top:-200px;margin-left:-300px;height:400px;width:600px;background-color:rgb(100,0,0);position:fixed;font-family:arial;text-align:center;border-radius:30px;color:rgb(200,200,200);}
+#alertInput {width:100%;position:absolute;bottom:50px;border-top-left-radius:30px;border-top-right-radius:30px;left:0px;height:100px;border:none;background-color:rgb(30,30,30);color:rgb(200,200,200);text-align:center;font-size:20px;}
+#alertSubmit {width:100%;position:absolute;bottom:0px;border-bottom-left-radius:30px;border-bottom-right-radius:30px;left:0px;height:50px;border:none;background-color:rgb(50,50,50);color:rgb(200,200,200);text-align:center;font-size:20px;}
 </style>
 </head>
 <body>
@@ -37,65 +45,25 @@ body {margin:0px;}
 
 <iframe src="default.html" id="window"></iframe>
 
+<div id="darken" style="display:none;background-color:rgb(0,0,0,0.7);width:100%;height:100%;position:fixed;"></div>
+
+<div id="menu3" style="display:none;width:100px;"><input id="console" type="text" oninput="cons(this.value)"></div>
+<div id="menu2" onclick="menu2()" onmouseover="showMenu2()" onmousemove="closeMenuTimeout2 = 200" style="left:-90px;">></div>
+
 
 <div id="menu1" style="display:none;width:100px;">
 <button id="appsButton" onclick="apps()">Apps</button>
 <button id="assistantButton" onclick="assistant()">Assistant</button>
 <button id="configurationButton" onclick="configuration()">Configuration</button>
 <button id="entertainmentButton" onclick="entertainment()">Entertainment</button>
+<img src="restart.png" id="restart" onclick="restart()">
+<img src="shutdown.png" id="shutdown" onclick="shutdown()">
 </div>
 <div id="apps" style="display:none;height:100px;">
 <div id="appsContent">
 </div>
 <div id="appsContent2">
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
-app1 app1.html;
-app2 app2.html;
-app3 app3.html;
+Notepad notepad.html;
 </div>
 </div>
 
@@ -124,8 +92,8 @@ app3 app3.html;
 </div>
 
 
-
 <img src="CyberSystemLogo.png" id="menu" onclick="menu1()" onmouseover="showMenu()" onmousemove="closeMenuTimeout = 200">
+
 </div>
 
 <div id="loading">
@@ -134,32 +102,60 @@ app3 app3.html;
 <img src="CyberSystemLogo.png" id="loadingLogo">
 </div>
 <script>
+function alertInput(header,text) {
+document.body.innerHTML += '<div id="alert"><h1>'+header+'</h1><h3>'+text+'</h3><input id="alertInput"><button id="alertSubmit" onclick="sessionStorage.alertInput = document.getElementById(\'alertInput\').value;document.getElementById(\'alert\').remove()">Submit</button></div>'
+}
+alertInput("Welcome","Welcome to CyberChill CyberSystem A3. This is not an full release and it is just an early showcase of the future version. Press submit to continue.")
+function darken() {
+document.getElementById("darken").style.display = "block";
+}
 
 
-alert("Under Development | CyberSystem Alpha 3") 
+function lighten() {
+document.getElementById("darken").style.display = "none";
+}
 
 
 
 var mainClockFunction = "nothing";
 var closeMenuTimeout = 0
+var closeMenuTimeout2 = 0
 var menuOpen1 = "none"
 function showMenu() {
-if(Number(document.getElementById("menu").style.left.split("px")[0]) < 50) {
+if(Number(document.getElementById("menu").style.left.split("px")[0]) < 50 && mainClockFunction == "nothing") {
 mainClockFunction = "showMenu";
 closeMenuTimeout = 200
 }
 }
 
 function hideMenu() {
-if(document.getElementById("menu1").style.display == "none") {
+if(document.getElementById("menu1").style.display == "none" && mainClockFunction == "nothing") {
 mainClockFunction = "hideMenu";
 }
 }
+
+
+
+function showMenu2() {
+if(Number(document.getElementById("menu2").style.left.split("px")[0]) < 50 && mainClockFunction == "nothing") {
+mainClockFunction = "showMenu2";
+closeMenuTimeout2 = 200
+}
+}
+
+function hideMenu2() {
+if(document.getElementById("menu3").style.display == "none" && mainClockFunction == "nothing") {
+mainClockFunction = "hideMenu2";
+}
+}
+
+
 
 function endLoading() {
 document.getElementById("loading").style.display = "none";
 }
 function menu1() {
+if(mainClockFunction == "nothing" && document.getElementById("menu").style.left == "50px") {
 if(document.getElementById("menu1").style.display == "none") {
 document.getElementById("menu1").style.display = "block";
 document.getElementById("menu1").style.borderBottomLeftRadius = "30px";
@@ -178,6 +174,28 @@ closeOpenMenu1()
 menuOpen1 = "none"
 }
 }
+}
+
+
+
+
+
+
+function menu2() {
+if(mainClockFunction == "nothing" && document.getElementById("menu2").style.left == "50px") {
+if(document.getElementById("menu3").style.display == "none") {
+document.getElementById("menu3").style.display = "block";
+document.getElementById("menu3").style.borderBottomLeftRadius = "30px";
+document.getElementById("menu3").style.borderBottomRightRadius = "30px";
+mainClockFunction = "expandMenu2"
+}
+else {
+mainClockFunction = "closeMenu2"
+}
+}
+}
+
+
 
 
 
@@ -313,6 +331,27 @@ mainClockFunction = "nothing"
 
 
 
+else if(mainClockFunction == "expandMenu2") {
+document.getElementById("menu3").style.width = (Number(document.getElementById("menu3").style.width.split("px")[0]) + 50).toString() + "px"
+if(Number(document.getElementById("menu3").style.width.split("px")[0]) >= document.getElementById("desktop").offsetWidth-100) {
+mainClockFunction = "nothing"
+}
+}
+
+
+else if(mainClockFunction == "closeMenu2") {
+
+document.getElementById("menu3").style.width = (Number(document.getElementById("menu3").style.width.split("px")[0]) - 50).toString() + "px"
+if(Number(document.getElementById("menu3").style.width.split("px")[0]) <= 100) {
+document.getElementById("menu3").style.display = "none";
+document.getElementById("menu3").style.width = "100px";
+mainClockFunction = "nothing"
+}
+
+}
+
+
+
 else if(mainClockFunction == "expandApps") {
 document.getElementById("apps").style.height = (Number(document.getElementById("apps").style.height.split("px")[0]) + 50).toString() + "px"
 if(Number(document.getElementById("apps").style.height.split("px")[0]) >= document.getElementById("desktop").offsetHeight-300) {
@@ -433,6 +472,22 @@ mainClockFunction = "nothing"
 }
 
 
+else if(mainClockFunction == "showMenu2") {
+document.getElementById("menu2").style.left = (Number(document.getElementById("menu2").style.left.split("px")[0]) + 10).toString() + "px"
+if(Number(document.getElementById("menu2").style.left.split("px")[0]) >= 50) {
+mainClockFunction = "nothing"
+}
+}
+
+else if(mainClockFunction == "hideMenu2") {
+document.getElementById("menu2").style.left = (Number(document.getElementById("menu2").style.left.split("px")[0]) - 10).toString() + "px"
+if(Number(document.getElementById("menu2").style.left.split("px")[0]) <= -90) {
+mainClockFunction = "nothing"
+}
+
+}
+
+
 
 
 if(closeMenuTimeout > 0) {
@@ -441,6 +496,25 @@ closeMenuTimeout -= 1
 if(closeMenuTimeout == 0 && Number(document.getElementById("menu").style.left.split("px")[0])  >= 0) {
 hideMenu()
 }
+
+if(closeMenuTimeout2 > 0) {
+closeMenuTimeout2 -= 1
+}
+if(closeMenuTimeout2 == 0 && Number(document.getElementById("menu2").style.left.split("px")[0])  >= 0) {
+hideMenu2()
+}
+
+
+if(Number(document.getElementById("menu").style.left.split("px")[0]) == 50 || Number(document.getElementById("menu2").style.left.split("px")[0]) == 50) {
+darken()
+}
+else {
+lighten()
+}
+
+
+
+
 
 }
 
@@ -563,11 +637,41 @@ i += 1
 
 
 
+//CONSOLE
+var consV = ""
+document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13 && document.getElementById("console").focus) {
+		consV = document.getElementById("console").value
+        setTimeout(consCommand,500)
+    }
+});
+
+function consCommand(v) {
+v = consV
+if(v == "restart") {
+document.location.reload(true)
+}
+else if(v == "oof") {
+window.open("https://www.roblox.com")
+}
+}
+
+function restart() {
+document.location.reload(true)
+}
+
+function shutdown() {
+document.body.innerHTML = ""
+}
+
+
 setInterval(mainClock,10)
 setTimeout(endLoading,3000)
 //Use a full black theme
 //Expand objects for futuristic theme in final CyberSystem
 //Fix apps when closing app menu
+//Add "logo" for command line
+//Menu 2/3 = command line
 
 //cybersystema3.github.io
 //cybersystema3@outlook.com
